@@ -53,14 +53,10 @@ class FileSystem extends AbstractStorage
             mkdir(dirname($path), 0777, true);
         }
 
+
         // Remove all files who have the same name that new file and  without checking file's extension
-        $listFile = array_diff(scandir(dirname($path)), array('..', '.'));
-        foreach ($listFile as $file) {
-            $info = pathinfo($file);
-            if ($info['filename'] == $media->getFileName()) {
-                unlink(dirname($path) . '/' . $file);
-            }
-        }
+        $this->removeMedia($media->getCompany(), $strategy, $media->getCategory(), $media->getFileName(), true);
+
         // TODO: Remove this function when rename function will be patched
         // -----> https://bugs.php.net/bug.php?id=54097
         $result = $this->move($media->getPath(), $path);
