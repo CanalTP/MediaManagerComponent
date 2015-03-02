@@ -8,4 +8,5 @@ class PictureMediaType
     const JPG           = 1;
     const PNG           = 2;
     const ICO           = 3;
+    const SVG           = 4;
 }
