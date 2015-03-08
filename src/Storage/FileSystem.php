@@ -8,6 +8,7 @@ use CanalTP\MediaManager\Category\CategoryInterface;
 use CanalTP\MediaManager\Media\MediaInterface;
 use CanalTP\MediaManager\Storage\AbstractStorage;
 use CanalTP\MediaManager\Media\Builder\MediaBuilder;
+use Symfony\Component\HttpFoundation\File\File;
 
 class FileSystem extends AbstractStorage
 {
@@ -51,6 +52,10 @@ class FileSystem extends AbstractStorage
         if (!is_dir(dirname($path))) {
             mkdir(dirname($path), 0777, true);
         }
+
+
+        // Remove all files who have the same name that new file and  without checking file's extension
+        $this->removeMedia($media->getCompany(), $strategy, $media->getCategory(), $media->getFileName(), true);
 
         // TODO: Remove this function when rename function will be patched
         // -----> https://bugs.php.net/bug.php?id=54097

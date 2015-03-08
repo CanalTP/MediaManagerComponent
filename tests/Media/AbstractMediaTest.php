@@ -7,7 +7,7 @@ use CanalTP\MediaManager\Company\Configuration\Builder\ConfigurationBuilder;
 use CanalTP\MediaManager\Company\Company;
 use CanalTP\MediaManager\Media\MediaType;
 use CanalTP\MediaManager\Media\SoundMediaType;
-use CanalTP\MediaManager\Category\LineCategory;
+use CanalTP\MediaManager\Category\DefaultCategory;
 
 class AbstractMediaTest extends \PHPUnit_Framework_TestCase
 {
@@ -182,7 +182,7 @@ class AbstractMediaTest extends \PHPUnit_Framework_TestCase
 
     public function testSetAndGetCategory()
     {
-        $category = new LineCategory();
+        $category = new DefaultCategory();
 
         $this->assertNull(
             $this->stub->getCategory(),

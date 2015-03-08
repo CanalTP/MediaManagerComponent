@@ -8,52 +8,10 @@ use CanalTP\MediaManager\Company\Configuration\Builder\ConfigurationBuilder;
 use CanalTP\MediaManager\Company\Configuration\Configuration;
 use CanalTP\MediaManager\Media\Builder\MediaBuilder;
 use CanalTP\MediaManager\Category\Factory\CategoryFactory;
-use CanalTP\MediaManager\Category\CategoryType;
 use CanalTP\MediaManager\Company\Company;
 
 class CompanyTest extends AbstractTest
 {
-    private $category = null;
-    private $media = null;
-
-    public function setUp()
-    {
-        $params = array(
-            'name' => Registry::get('COMPANY_NAME'),
-            'storage' => array(
-                'type' => 'filesystem',
-                'path' => '/tmp/MediaManager/',
-            ),
-            'strategy' => Registry::get('DEFAULT_STRATEGY_NAME')
-        );
-
-        $this->company = new Company();
-        $configurationBuilder = new ConfigurationBuilder();
-        $mediaBuilder = new MediaBuilder();
-        $categoryFactory = new CategoryFactory();
-
-        $this->company->setConfiguration(
-            $configurationBuilder->buildConfiguration($params)
-        );
-
-        $this->networkCategory = $categoryFactory->create(
-            CategoryType::NETWORK
-        );
-        $this->category = $categoryFactory->create(CategoryType::LINE);
-        $this->category->setName(Registry::get('CATEGORY_NAME'));
-        $this->category->setId(Registry::get('CATEGORY_NAME'));
-        $this->category->setParent($this->networkCategory);
-
-        $this->media = $mediaBuilder->buildMedia(
-            Registry::get('/') . Registry::get('SOUND_FILE'),
-            $this->company,
-            $this->category
-        );
-
-        $this->company->setName(Registry::get('COMPANY_NAME'));
-        $this->company->addMedia($this->media);
-    }
-
     public function testInitialisation()
     {
         $company = new Company();

@@ -46,7 +46,6 @@ class ConfigurationBuilder implements ConfigurationBuilderInterface
 
         $this->initStorage($company);
         $this->initStrategy($company);
-
         return ($this->getConfiguration());
     }
 }

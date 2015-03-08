@@ -56,9 +56,7 @@ class DefaultStrategy extends AbstractStrategy
         CategoryInterface $category
     )
     {
-        $path = $company->getStorage()->getPath();
-        $path .= $category->getName() . '/';
-        $path .= $category->getRessourceId();
+        $path = $this->generateCategoryPath($company, $category);
 
         if (!file_exists($path)) {
             return (array());

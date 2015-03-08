@@ -7,12 +7,11 @@ use CanalTP\MediaManager\Registry;
 use CanalTP\MediaManager\Company\Configuration\Builder\ConfigurationBuilder;
 use CanalTP\MediaManager\Company\Configuration\Configuration;
 use CanalTP\MediaManager\Company\Company;
-use CanalTP\MediaManager\Category\LineCategory;
+use CanalTP\MediaManager\Category\DefaultCategory;
 use CanalTP\MediaManager\Media\Builder\MediaBuilder;
 
 class FileSystemTest extends AbstractTest
 {
-    private $media = null;
     private $filePath = null;
 
     public function setUp()
@@ -26,7 +25,7 @@ class FileSystemTest extends AbstractTest
             ),
             'strategy' => Registry::get('DEFAULT_STRATEGY_NAME')
         );
-        $category = new LineCategory();
+        $category = new DefaultCategory();
         $category->setName(Registry::get('CATEGORY_NAME'));
         $this->company = new Company();
         $this->company->setName($params['name']);

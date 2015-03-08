@@ -3,23 +3,17 @@
 namespace CanalTP\MediaManager\Test\Company\Configuration\Builder;
 
 use CanalTP\MediaManager\Registry;
+use CanalTP\MediaManager\Test\AbstractTest;
 use CanalTP\MediaManager\Company\Configuration\Builder\ConfigurationBuilder;
 
-class ConfigurationBuilderTest extends \PHPUnit_Framework_TestCase
+class ConfigurationBuilderTest extends AbstractTest
 {
     private $builder = null;
     private $params = null;
 
     public function setUp()
     {
-        $this->params = array(
-            'name' => 'my_company',
-            'storage' => array(
-                'type' => 'filesystem',
-                'path' => '/tmp/MediaManager/',
-            ),
-            'strategy' => Registry::get('DEFAULT_STRATEGY_NAME')
-        );
+        $this->params = $this->getConfiguration();
         $this->builder = new ConfigurationBuilder();
     }
 
@@ -39,5 +33,9 @@ class ConfigurationBuilderTest extends \PHPUnit_Framework_TestCase
             $configuration,
             Registry::get('BAD_RETURN')
         );
+    }
+
+    public function tearDown()
+    {
     }
 }

@@ -31,6 +31,9 @@ class MediaFactory implements MediaFactoryInterface
             case 'image/png':
                 $this->type = MediaType::PICTURE;
                 break;
+            case 'image/svg+xml':
+                $this->type = MediaType::PICTURE;
+                break;
             case 'audio/mpeg':
                 $this->type = MediaType::SOUND;
                 break;
