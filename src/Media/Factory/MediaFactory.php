@@ -7,6 +7,7 @@ use CanalTP\MediaManager\Media\SoundMedia;
 use CanalTP\MediaManager\Media\PictureMedia;
 use CanalTP\MediaManager\Media\PdfMedia;
 use CanalTP\MediaManager\Media\Factory\MediaFactoryInterface;
+use CanalTP\MediaManager\Media\GenericMedia;
 
 class MediaFactory implements MediaFactoryInterface
 {
@@ -38,7 +39,7 @@ class MediaFactory implements MediaFactoryInterface
                 $this->type = MediaType::PDF;
                 break;
             default:
-                throw new \Exception('MediaManager can be save this type: ' . $this->mime);
+                $this->type = MediaType::UNKNOWN;
         }
     }
 
@@ -55,6 +56,9 @@ class MediaFactory implements MediaFactoryInterface
                 break;
             case MediaType::PDF:
                 $media = new PdfMedia();
+                break;
+            case MediaType::UNKNOWN:
+                $media = new GenericMedia();
                 break;
         }
 

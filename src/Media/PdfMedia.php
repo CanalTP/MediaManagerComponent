@@ -2,10 +2,10 @@
 
 namespace CanalTP\MediaManager\Media;
 
-use CanalTP\MediaManager\Media\AbstractMedia;
+use CanalTP\MediaManager\Media\GenericMedia;
 use CanalTP\MediaManager\Media\MediaType;
 
-class PdfMedia extends AbstractMedia
+class PdfMedia extends GenericMedia
 {
     public function __construct()
     {

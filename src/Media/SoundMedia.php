@@ -3,10 +3,10 @@
 namespace CanalTP\MediaManager\Media;
 
 use CanalTP\MediaManager\Media\SoundMediaType;
-use CanalTP\MediaManager\Media\AbstractMedia;
+use CanalTP\MediaManager\Media\GenericMedia;
 use CanalTP\MediaManager\Media\MediaType;
 
-class SoundMedia extends AbstractMedia
+class SoundMedia extends GenericMedia
 {
     public function __construct()
     {

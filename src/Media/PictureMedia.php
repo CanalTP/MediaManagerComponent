@@ -3,10 +3,10 @@
 namespace CanalTP\MediaManager\Media;
 
 use CanalTP\MediaManager\Media\PictureMediaType;
-use CanalTP\MediaManager\Media\AbstractMedia;
+use CanalTP\MediaManager\Media\GenericMedia;
 use CanalTP\MediaManager\Media\MediaType;
 
-class PictureMedia extends AbstractMedia
+class PictureMedia extends GenericMedia
 {
     private $width = null;
     private $length = null;
