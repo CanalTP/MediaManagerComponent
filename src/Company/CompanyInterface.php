@@ -5,6 +5,7 @@ namespace CanalTP\MediaManager\Company;
 use CanalTP\MediaManager\Media\MediaInterface;
 use CanalTP\MediaManager\Category\CategoryInterface;
 use CanalTP\MediaManager\Company\Configuration\ConfigurationInterface;
+use CanalTP\MediaManager\Storage\StorageModeType;
 
 interface CompanyInterface
 {
@@ -17,7 +18,7 @@ interface CompanyInterface
     public function setId($id);
     public function getName();
     public function setName($name);
-    public function addMedia(MediaInterface $media);
+    public function addMedia(MediaInterface $media, $mode = StorageModeType::MOVE);
     public function getMediasByCategory(CategoryInterface $category);
     public function findMedia(CategoryInterface $category, $mediaId);
     public function removeMedia(CategoryInterface $category, $basename, $force);

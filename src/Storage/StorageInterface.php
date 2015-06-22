@@ -11,7 +11,8 @@ interface StorageInterface
 {
     public function addMedia(
         MediaInterface $media,
-        StrategyInterface $strategy
+        StrategyInterface $strategy,
+        $mode = CompanyInterface::MOVE
     );
 
     public function getMediasByCategory(

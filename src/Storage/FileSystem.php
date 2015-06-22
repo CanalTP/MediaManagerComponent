@@ -2,6 +2,7 @@
 
 namespace CanalTP\MediaManager\Storage;
 
+use CanalTP\MediaManager\Company\Company;
 use CanalTP\MediaManager\Company\CompanyInterface;
 use CanalTP\MediaManager\Strategy\StrategyInterface;
 use CanalTP\MediaManager\Category\CategoryInterface;
@@ -40,11 +41,20 @@ class FileSystem extends AbstractStorage
         return ($this->move($path, $destDir . $basename));
     }
 
-    public function addMedia(
-        MediaInterface $media,
-        StrategyInterface $strategy
-        ) {
-        $result = false;
+    private function copy($src, $dest)
+    {
+        return copy($src, $dest);
+    }
+
+    /**
+     * @param MediaInterface $media
+     * @param StrategyInterface $strategy
+     * @param integer $mode StorageModeType::MOVE move or StorageModeType::COPY. Default StorageModeType::MOVE
+     * @throws \Exception
+     * @return bool
+     */
+    public function addMedia(MediaInterface $media, StrategyInterface $strategy, $mode = StorageModeType::MOVE)
+    {
         $path = $this->getPath();
         $path .= $strategy->generatePath($media);
 
@@ -52,9 +62,21 @@ class FileSystem extends AbstractStorage
             mkdir(dirname($path), 0777, true);
         }
 
-        // TODO: Remove this function when rename function will be patched
         // -----> https://bugs.php.net/bug.php?id=54097
-        $result = $this->move($media->getPath(), $path);
+        switch($mode) {
+            case StorageModeType::MOVE:
+                // TODO: Remove this function when rename function will be patched
+                $result = $this->move($media->getPath(), $path);
+                break;
+
+            case StorageModeType::COPY:
+                // TODO: Remove this function when rename function will be patched
+                $result = $this->copy($media->getPath(), $path);
+                break;
+            default:
+                throw new \Exception("Unrecognised third parameter");
+        }
+
         $media->setPath($path);
         // if ($result = rename($media->getPath(), $path)) {
         //     $media->setPath($path);
